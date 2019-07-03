@@ -1,4 +1,4 @@
-movie_mvvm_kotlin
+# movie_mvvm_kotlin
 
 Movie app showcasing MVVM architecture.
 
