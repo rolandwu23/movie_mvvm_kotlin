@@ -9,6 +9,7 @@ The usages in the app are
 4. ViewModel
 5. Pagination Library
 6. Room Database.
+7. Coroutines
 
 It also demostrates communicatio between activiy and fragment using ViewModel.
 
