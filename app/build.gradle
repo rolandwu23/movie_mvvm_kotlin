@@ -85,7 +85,7 @@ dependencies {
     /*Retrofit lib*/
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     /*RxJava lib*/
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
@@ -102,6 +102,10 @@ dependencies {
     implementation 'android.arch.persistence.room:runtime:1.1.1'
     implementation "android.arch.persistence.room:rxjava2:1.1.1"
     kapt 'android.arch.persistence.room:compiler:1.1.1'
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1'
 
     // Tests
     testImplementation 'junit:junit:4.12'

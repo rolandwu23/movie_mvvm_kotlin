@@ -2,11 +2,15 @@ package com.grok.akm.movie.Room
 
 import android.app.Application
 import android.arch.lifecycle.LiveData
-import android.os.AsyncTask
+import android.util.Log
 import com.grok.akm.movie.Model.pojo.Movie
-import java.util.concurrent.ExecutionException
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
-class FavoriteRepository(application: Application) {
+class FavoriteRepository(application: Application) : CoroutineScope {
+
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Main
 
     private val favoriteDao: FavoriteDao?
 
@@ -19,51 +23,37 @@ class FavoriteRepository(application: Application) {
     }
 
     fun setFavorite(movie: Movie) {
-        insertAsyncTask(favoriteDao).execute(movie)
+        launch { setFavoriteBG(movie) }
     }
 
-    private class insertAsyncTask internal constructor(private val mAsyncTaskDao: FavoriteDao?) :
-        AsyncTask<Movie, Void, Void>() {
-
-        override fun doInBackground(vararg params: Movie): Void? {
-            mAsyncTaskDao?.setFavorite(params[0])
-            return null
+    private suspend fun setFavoriteBG(movie: Movie){
+        withContext(Dispatchers.IO){
+            favoriteDao?.setFavorite(movie)
         }
     }
 
     fun unFavorite(id: String) {
-        unAsyncTask(favoriteDao).execute(id)
+        launch { unFavoriteBG(id) }
+    }
+
+    private suspend fun unFavoriteBG(id:String) {
+         withContext(Dispatchers.IO){
+             favoriteDao?.unFavorite(id)
+        }
     }
 
     fun isFavorite(id: String): Boolean? {
         var b: Boolean? = null
-        try {
-            b = checkAsyncTask(favoriteDao).execute(id).get()
-        } catch (e: ExecutionException) {
-            e.printStackTrace()
-        } catch (e: InterruptedException) {
-            e.printStackTrace()
-        }
-
+        runBlocking { b = isFavoriteBG(id) }
         return b
     }
 
-    private class checkAsyncTask internal constructor(private val mAsyncTaskDao: FavoriteDao?) :
-        AsyncTask<String, Void, Boolean>() {
-
-        override fun doInBackground(vararg params: String): Boolean? {
-            return mAsyncTaskDao?.isFavorite(params[0])!! > 0
+    private suspend fun isFavoriteBG(id:String) : Boolean {
+        return withContext(Dispatchers.IO)  {
+            val boolean = favoriteDao?.isFavorite(id)!! > 0
+            Log.e("Coroutine Boolean",""+boolean)
+             boolean
         }
     }
-
-    private class unAsyncTask internal constructor(private val mAsyncTaskDao: FavoriteDao?) :
-        AsyncTask<String, Void, Void>() {
-
-        override fun doInBackground(vararg params: String): Void? {
-            mAsyncTaskDao?.unFavorite(params[0])
-            return null
-        }
-    }
-
 
 }

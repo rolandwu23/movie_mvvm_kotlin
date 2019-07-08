@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewCompat
@@ -21,7 +20,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.grok.akm.movie.Model.ApiResponseReview
 import com.grok.akm.movie.Model.ApiResponseTrailer
-import com.grok.akm.movie.Model.pojo.*
+import com.grok.akm.movie.Model.pojo.Movie
+import com.grok.akm.movie.Model.pojo.Review
+import com.grok.akm.movie.Model.pojo.Video
 import com.grok.akm.movie.Network.Status
 import com.grok.akm.movie.Utils.Constant
 import com.grok.akm.movie.ViewModel.DetailsViewModel
