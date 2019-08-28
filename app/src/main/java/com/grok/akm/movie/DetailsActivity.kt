@@ -38,6 +38,15 @@ import javax.inject.Inject
 
 class DetailsActivity : AppCompatActivity(), View.OnClickListener {
 
+    companion object {
+
+        // View name of the header image. Used for activity scene transitions
+        const val VIEW_NAME_HEADER_IMAGE = "detail:header:image"
+
+        // View name of the header title. Used for activity scene transitions
+        const val VIEW_NAME_HEADER_TITLE = "detail:header:title"
+    }
+
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
@@ -56,8 +65,8 @@ class DetailsActivity : AppCompatActivity(), View.OnClickListener {
 
         (application as MyApplication).appComponent!!.doInjection(this)
 
-        ViewCompat.setTransitionName(movie_poster, VIEW_NAME_HEADER_IMAGE)
-        ViewCompat.setTransitionName(movie_name, VIEW_NAME_HEADER_TITLE)
+        ViewCompat.setTransitionName(activity_details_movie_poster, VIEW_NAME_HEADER_IMAGE)
+        ViewCompat.setTransitionName(activity_details_movie_name, VIEW_NAME_HEADER_TITLE)
 
         favoriteViewModel = ViewModelProviders.of(this).get(FavoriteViewModel::class.java)
 
@@ -99,11 +108,11 @@ class DetailsActivity : AppCompatActivity(), View.OnClickListener {
     private fun showDetails(movie: Movie) {
         Glide.with(this)
             .load(Constant().getBackdropPath(movie.backdropPath))
-            .into(movie_poster)
-        movie_name.text = movie.title
-        movie_year.text = String.format(getString(R.string.release_date), movie.releaseDate)
-        movie_rating.text = String.format(getString(R.string.rating), movie.voteAverage.toString())
-        movie_description.text = movie.overview
+            .into(activity_details_movie_poster)
+        activity_details_movie_name.text = movie.title
+        activity_details_movie_year.text = String.format(getString(R.string.release_date), movie.releaseDate)
+        activity_details_movie_rating.text = String.format(getString(R.string.rating), movie.voteAverage.toString())
+        activity_details_movie_description.text = movie.overview
     }
 
     private fun consumeTrailerResponse(apiResponseTrailer: ApiResponseTrailer?) {
@@ -207,9 +216,9 @@ class DetailsActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun showFavourite() {
         if (favoriteViewModel?.isFavorite(movie!!.id)!!) {
-            favorite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_white_24dp))
+            activity_details_favorite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_white_24dp))
         } else {
-            favorite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_white_24dp))
+            activity_details_favorite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_white_24dp))
         }
     }
 
@@ -232,10 +241,10 @@ class DetailsActivity : AppCompatActivity(), View.OnClickListener {
         val favourite = favoriteViewModel?.isFavorite(movie!!.id)!!
         if (favourite) {
             favoriteViewModel?.unFavorite(movie!!.id)
-            favorite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_white_24dp))
+            activity_details_favorite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_white_24dp))
         } else {
             favoriteViewModel?.setFavorite(movie!!)
-            favorite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_white_24dp))
+            activity_details_favorite.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_favorite_white_24dp))
         }
     }
 
@@ -250,18 +259,8 @@ class DetailsActivity : AppCompatActivity(), View.OnClickListener {
         when(view){
             video_thumb -> onThumbnailClick(view)
             review_content -> onReviewClick(view as TextView)
-            favorite -> onFavouriteClick()
+            activity_details_favorite -> onFavouriteClick()
         }
     }
-
-    companion object {
-
-        // View name of the header image. Used for activity scene transitions
-        val VIEW_NAME_HEADER_IMAGE = "detail:header:image"
-
-        // View name of the header title. Used for activity scene transitions
-        val VIEW_NAME_HEADER_TITLE = "detail:header:title"
-    }
-
 
 }

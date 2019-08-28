@@ -6,8 +6,11 @@ import com.grok.akm.movie.Network.ApiCallInterface
 import io.reactivex.Observable
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-class Repository(private val apiCallInterface: ApiCallInterface){
+class Repository
+@Inject
+    constructor(private val apiCallInterface: ApiCallInterface){
 
     @SuppressLint("SimpleDateFormat")
     private val dateFormat: SimpleDateFormat = SimpleDateFormat("yyyy-MM-dd")

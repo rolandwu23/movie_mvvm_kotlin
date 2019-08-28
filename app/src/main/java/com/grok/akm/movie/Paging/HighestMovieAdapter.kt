@@ -28,7 +28,7 @@ class HighestMovieAdapter(private val context: Context, private val movies: List
     inner class ViewHolder constructor(root: View) : MoviePageListAdapter.ViewHolder(root), View.OnClickListener {
 
         override fun onClick(v: View) {
-            DetailsPath(movie, v)
+            detailsPath(movie, v)
         }
     }
 
@@ -75,7 +75,7 @@ class HighestMovieAdapter(private val context: Context, private val movies: List
         )
     }
 
-    private fun DetailsPath(movie: Movie?, view: View) {
+    private fun detailsPath(movie: Movie?, view: View) {
         val intent = Intent(context, DetailsActivity::class.java)
         val extras = Bundle()
         extras.putParcelable(Constant.MOVIE, movie)

@@ -96,7 +96,7 @@ class MostActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun showMostMovies(status: Status?){
-        if (status  == Status.INITIAL) {
+        if (status  == Status.LOADING) {
             swipe_refresh.isRefreshing = false
             swipe_refresh.visibility = View.VISIBLE
             shimmer_view_container.startShimmer()

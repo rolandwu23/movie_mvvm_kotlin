@@ -25,7 +25,7 @@ class HighestMovieDataSource(private val repository: Repository,
             repository.highestRatedMovies(1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe({ d -> progressLiveStatus.postValue(Status.INITIAL) })
+                .doOnSubscribe({ d -> progressLiveStatus.postValue(Status.LOADING) })
                 .subscribe(
                     { result ->
                         progressLiveStatus.postValue(Status.SUCCESS)

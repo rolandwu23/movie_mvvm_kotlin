@@ -24,7 +24,7 @@ class MovieDataSource(private val repository: Repository,
             repository.executeMovies(1)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { d -> progressLiveStatus.postValue(Status.INITIAL) }
+                .doOnSubscribe { d -> progressLiveStatus.postValue(Status.LOADING) }
                 .subscribe(
                     { result ->
                         progressLiveStatus.postValue(Status.SUCCESS)

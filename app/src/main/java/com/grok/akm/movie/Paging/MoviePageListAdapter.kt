@@ -68,7 +68,7 @@ open class MoviePageListAdapter(private val context: Context) :
         )
     }
 
-    private fun DetailsPath(movie: Movie?, view: View) {
+    private fun detailsPath(movie: Movie?, view: View) {
         val intent = Intent(context, DetailsActivity::class.java)
         val extras = Bundle()
         extras.putParcelable(Constant.MOVIE, movie)
@@ -111,7 +111,7 @@ open class MoviePageListAdapter(private val context: Context) :
         }
 
         override fun onClick(v: View) {
-            DetailsPath(movie, v)
+            detailsPath(movie, v)
         }
 
 

@@ -22,7 +22,7 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <ImageView
-                    android:id="@+id/movie_poster"
+                    android:id="@+id/activity_details_movie_poster"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
@@ -54,7 +54,7 @@
                 android:orientation="vertical">
 
             <TextView
-                    android:id="@+id/movie_name"
+                    android:id="@+id/activity_details_movie_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
@@ -65,7 +65,7 @@
                     android:textSize="32sp"/>
 
             <TextView
-                    android:id="@+id/movie_year"
+                    android:id="@+id/activity_details_movie_year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -75,7 +75,7 @@
                     android:textColor="@android:color/white"/>
 
             <TextView
-                    android:id="@+id/movie_rating"
+                    android:id="@+id/activity_details_movie_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -95,7 +95,7 @@
                     android:textColor="@android:color/white"/>
 
             <TextView
-                    android:id="@+id/movie_description"
+                    android:id="@+id/activity_details_movie_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
@@ -115,7 +115,7 @@
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
-            android:id="@+id/favorite"
+            android:id="@+id/activity_details_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

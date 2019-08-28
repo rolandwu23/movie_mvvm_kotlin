@@ -83,7 +83,7 @@ class HighestActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListene
     }
 
     private fun showHighestMovies(status: Status?){
-        if (status == Status.INITIAL) {
+        if (status == Status.LOADING) {
             swipe_refresh.isRefreshing = false
             shimmer_view_container.visibility = View.VISIBLE
             shimmer_view_container.startShimmer()
